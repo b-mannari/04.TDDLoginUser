@@ -36,7 +36,53 @@ namespace NUnitUserAuthentication
 
 
         [Test]
+        public void ValidatePassword_ReturnTrue_WhenValidPasswordIsPassed()
+        {
+            // Arrange
+            var passsord = "Test12";
+            ValidateInputs validate = new ValidateInputs();
+
+            // Act
+            var result = validate.ValidatePassword(passsord);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+
+        [Test]
+        public void ValidatePassword_ReturnFalse_WhenInValidPasswordIsPassed()
+        {
+            // Arrange
+            var passsord = "test";
+            ValidateInputs validate = new ValidateInputs();
+
+            // Act
+            var result = validate.ValidatePassword(passsord);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [Test]
         public void CreateUserName_ReturnEqual_WhenValidUsernameIsPassed()
+        {
+            // Arrange
+            string expectedResult = "User created Successfully";
+            string username = "testuser";
+            string password = "password1";
+            ValidateInputs validate = new ValidateInputs();
+
+            // Act
+            string actulaResult = validate.CreateUser(username, password);
+
+            // Assert
+            Assert.AreEqual(expectedResult, actulaResult);
+        }
+
+        //Intially it passed but when password check introduced this test failed, and hence modified
+        [Test]
+        public void CreateUserName_ReturnNotEqual_WhenValidUsernameIsPassed()
         {
             // Arrange
             string expectedResult = "User created Successfully";
@@ -48,7 +94,7 @@ namespace NUnitUserAuthentication
             string actulaResult = validate.CreateUser(username, password);
 
             // Assert
-            Assert.AreEqual(expectedResult, actulaResult);
+            Assert.AreNotEqual(expectedResult, actulaResult);
         }
 
         [Test]

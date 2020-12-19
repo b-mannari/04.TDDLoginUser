@@ -8,7 +8,16 @@ namespace UserAuthentication
     {
         public bool ValidateUserName(string userName)
         {
-            if (Regex.Match(userName, "^[a-zA-Z]*$").Success)
+            if (Regex.Match(userName, @"^[a-zA-Z]*$").Success)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool ValidatePassword(string password)
+        {
+            if (Regex.Match(password, @"^.*(?=.{6,6})(?=.*\d)(?=.*[a-zA-Z]).*$").Success)
             {
                 return true;
             }
@@ -18,7 +27,9 @@ namespace UserAuthentication
         public string CreateUser(string username, string password)
         {
             bool validUserName = ValidateUserName(username);
-            if (validUserName)
+            bool validPassword = ValidatePassword(password);
+
+            if (validUserName && validPassword)
             {
                 return "User created Successfully";
             }
