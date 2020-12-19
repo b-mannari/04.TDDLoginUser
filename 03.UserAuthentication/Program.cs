@@ -16,8 +16,9 @@ namespace UserAuthenticationConsole
             Console.WriteLine("Please enter your Password");
             string password = Console.ReadLine();
 
-            //string message = validate.CreateUserName(username, password);
-            string message = validate.CreateUserName(username, password);
+            //string message = validate.CreateUser(username, password);
+            string message = validate.Login(username, password);
+
             Console.WriteLine(message);
         }
     }

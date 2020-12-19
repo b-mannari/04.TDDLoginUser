@@ -15,7 +15,7 @@ namespace UserAuthentication
             return false;
         }
 
-        public string CreateUserName(string username, string password)
+        public string CreateUser(string username, string password)
         {
             bool validUserName = ValidateUserName(username);
             if (validUserName)
@@ -28,5 +28,26 @@ namespace UserAuthentication
             }
         }
 
+        public string Login(string username, string password)
+        {
+            string message = "";
+            try
+            {
+                string inputUsername = "username"; string inputPassword = "password";
+                if (inputUsername == username && inputPassword == password)
+                {
+                    message = "Login Success";
+                }
+                else
+                {
+                    message = "Login failure";
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+            }
+            return message;
+        }
     }
 }
