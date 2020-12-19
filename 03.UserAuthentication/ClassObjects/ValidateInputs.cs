@@ -20,11 +20,11 @@ namespace UserAuthentication
             bool validUserName = ValidateUserName(username);
             if (validUserName)
             {
-                return "User created";
+                return "User created Successfully";
             }
             else
             {
-                return "User not created";
+                return "Unable to create user";
             }
         }
 

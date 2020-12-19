@@ -39,7 +39,7 @@ namespace NUnitUserAuthentication
         public void CreateUserName_ReturnEqual_WhenValidUsernameIsPassed()
         {
             // Arrange
-            string expectedResult = "User created";
+            string expectedResult = "User created Successfully";
             string username = "testuser";
             string password = "password";
             ValidateInputs validate = new ValidateInputs();
@@ -55,7 +55,7 @@ namespace NUnitUserAuthentication
         public void CreateUserName_ReturnNotEqual_WhenInValidUsernameIsPassed()
         {
             // Arrange
-            string expectedResult = "User created";
+            string expectedResult = "User created Successfully";
             string username = "testuser1";
             string password = "password";
             ValidateInputs validate = new ValidateInputs();
@@ -71,7 +71,7 @@ namespace NUnitUserAuthentication
         public void CreateUserName_ReturnEqual_WhenInValidUsernameIsPassed()
         {
             // Arrange
-            string expectedResult = "User not created";
+            string expectedResult = "Unable to create user";
             string username = "testuser2";
             string password = "password";
             ValidateInputs validate = new ValidateInputs();
