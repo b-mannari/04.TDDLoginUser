@@ -1,64 +1,25 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Text.RegularExpressions;
 
 namespace UserAuthentication
 {
     public class ValidateInputs
     {
-        public bool ValidateUserName(string userName)
+        public void TextFileToDictionary()
         {
-            if (Regex.Match(userName, @"^[a-zA-Z]*$").Success)
-            {
-                return true;
-            }
-            return false;
-        }
+            Dictionary<string, string> dic = new Dictionary<string, string>();
 
-        public bool ValidatePassword(string password)
-        {
-            if (Regex.Match(password, @"^.*(?=.{6,6})(?=.*\d)(?=.*[a-zA-Z]).*$").Success)
+            using (var sr = new StreamReader(@"C:\TFS\GitHub\user.txt"))
             {
-                return true;
-            }
-            return false;
-        }
+                string line = null;
 
-        public string CreateUser(string username, string password)
-        {
-            bool validUserName = ValidateUserName(username);
-            bool validPassword = ValidatePassword(password);
-
-            if (validUserName && validPassword)
-            {
-                return "User created Successfully";
-            }
-            else
-            {
-                return "Unable to create user";
-            }
-        }
-
-        public string Login(string username, string password)
-        {
-            string message = "";
-            try
-            {
-                string inputUsername = "username"; string inputPassword = "password";
-                if (inputUsername == username && inputPassword == password)
+                // while it reads a key
+                while ((line = sr.ReadLine()) != null)
                 {
-                    message = "Login Success";
-                }
-                else
-                {
-                    message = "Login failure";
+                    // add the key and whatever it can read next as the value
+                    dic.Add(line, sr.ReadLine());
                 }
             }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception: " + e.Message);
-            }
-            return message;
         }
     }
 }

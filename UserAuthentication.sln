@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAuthentication", "03.UserAuthentication\UserAuthentication.csproj", "{CAFE645F-956F-40BA-8D81-CBAB8CEA394F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAuthenticationService", "03.UserAuthentication\UserAuthenticationService.csproj", "{CAFE645F-956F-40BA-8D81-CBAB8CEA394F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NUnitUserAuthentication", "NUnitUserAuthentication\NUnitUserAuthentication.csproj", "{3A5957FD-7780-4E7B-931B-14EF207D812C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAuthenticationTestcases", "NUnitUserAuthentication\UserAuthenticationTestcases.csproj", "{3A5957FD-7780-4E7B-931B-14EF207D812C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAuthenticationConsole", "UserAuthenticationConsole\UserAuthenticationConsole.csproj", "{A8F441BC-6BE8-4081-B97C-2C91CE3750ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,18 @@ Global
 		{3A5957FD-7780-4E7B-931B-14EF207D812C}.Release|x64.Build.0 = Release|Any CPU
 		{3A5957FD-7780-4E7B-931B-14EF207D812C}.Release|x86.ActiveCfg = Release|Any CPU
 		{3A5957FD-7780-4E7B-931B-14EF207D812C}.Release|x86.Build.0 = Release|Any CPU
+		{A8F441BC-6BE8-4081-B97C-2C91CE3750ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8F441BC-6BE8-4081-B97C-2C91CE3750ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8F441BC-6BE8-4081-B97C-2C91CE3750ED}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A8F441BC-6BE8-4081-B97C-2C91CE3750ED}.Debug|x64.Build.0 = Debug|Any CPU
+		{A8F441BC-6BE8-4081-B97C-2C91CE3750ED}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A8F441BC-6BE8-4081-B97C-2C91CE3750ED}.Debug|x86.Build.0 = Debug|Any CPU
+		{A8F441BC-6BE8-4081-B97C-2C91CE3750ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8F441BC-6BE8-4081-B97C-2C91CE3750ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8F441BC-6BE8-4081-B97C-2C91CE3750ED}.Release|x64.ActiveCfg = Release|Any CPU
+		{A8F441BC-6BE8-4081-B97C-2C91CE3750ED}.Release|x64.Build.0 = Release|Any CPU
+		{A8F441BC-6BE8-4081-B97C-2C91CE3750ED}.Release|x86.ActiveCfg = Release|Any CPU
+		{A8F441BC-6BE8-4081-B97C-2C91CE3750ED}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,4 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="ClassObjects\ValidateInputs.cs" />
+    <Compile Remove="Program.cs" />
+  </ItemGroup>
+
 </Project>
