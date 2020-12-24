@@ -9,23 +9,19 @@ namespace NUnitUserAuthentication
         readonly LoginUser loginUser = new LoginUser();
         UserAccount userAccount = new UserAccount();
         [Test]
-        public void ShouldReturnEqual_WhenValidUsernameAndPasswordArePassed()
+        public void ShouldReturnEqualMessageWhenValidUsernameAndPasswordArePassed()
         {
-            // Arrange
             string expectedResult = "Login Success";
-            //string username = "badari"; string password = "password";
             userAccount.Username = "badari"; userAccount.Password = "Mannari1";
             userAccount.AddUserInfo();
-            // Act
-            //string actulaResult = loginUser.Login(username, password, userAccount);
+            
             string actulaResult = loginUser.Login(userAccount.Username, userAccount.Password, userAccount);
 
-            // Assert
             Assert.AreEqual(expectedResult, actulaResult);
         }
 
         [Test]
-        public void ShouldReturnNotEqual_WhenInValidUsernameIsPassed()
+        public void ShouldReturnNotEqualMessageWhenInValidUsernameIsPassed()
         {
             // Arrange
             string expectedResult = "Login Success";
@@ -42,8 +38,9 @@ namespace NUnitUserAuthentication
         }
 
         [Test]
-        public void ShouldReturnNotEqual_WhenInValidPasswordIsPassed()
+        public void ShouldReturnNotEqualMessageWhenInValidPasswordIsPassed()
         {
+            
             // Arrange
             string expectedResult = "Login Success";
             string username = "username"; string password = "testpass1";
@@ -59,7 +56,7 @@ namespace NUnitUserAuthentication
         }
 
         [Test]
-        public void ShouldReturnEqual_WhenInValidUsernamePasswordIsPassed()
+        public void ShouldReturnEqualMessageWhenInValidUsernamePasswordIsPassed()
         {
             // Arrange
             string expectedResult = "Login failure";

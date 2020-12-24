@@ -23,7 +23,6 @@ namespace UserAuthenticationConsole
                 Console.WriteLine("2. Login User:");
                 Console.WriteLine("3. Exit:");
                 Console.WriteLine("Please enter your choice");
-                //string opt = Console.ReadLine();
                 this.OptionType = System.Console.ReadLine();
             }
             catch (System.Exception ex)

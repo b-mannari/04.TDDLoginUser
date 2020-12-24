@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace UserAuthentication.ClassObjects
 {
@@ -8,7 +6,6 @@ namespace UserAuthentication.ClassObjects
     {
         public string Login(string username, string password, UserAccount userAccount)
         {
-            //string dbUserName = "username"; string dbPassword = "password"; //HashMapping 
             string message = "";
             try
             {

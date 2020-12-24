@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace UserAuthentication.ClassObjects
@@ -27,16 +25,10 @@ namespace UserAuthentication.ClassObjects
 
         public string AddNewUser(string username, string password, UserAccount userAccount)
         {
-            //Sprint1
             bool validUserName = ValidateUserName(username);
 
-            //Sprint 3
             bool validPassword = ValidatePassword(password);
 
-            //Sprint1
-            //if (validUserName)
-
-            //Sprint3
             if (validUserName && validPassword)
             {
                 if (userAccount.GetUserInfo.ContainsKey(username))
@@ -45,7 +37,6 @@ namespace UserAuthentication.ClassObjects
                 }
                 else
                 {
-                    //dic.Add(username, password);
                     userAccount.AddUserInfo();
                 }
                 return "User created Successfully";
