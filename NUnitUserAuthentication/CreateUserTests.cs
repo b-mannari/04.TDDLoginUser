@@ -4,13 +4,20 @@ using UserAuthentication.ClassObjects;
 
 namespace NUnitUserAuthentication
 {
+    [TestFixture]
     class CreateUserTests
     {
-        readonly CreateUser createUser = new CreateUser();
-        UserAccount userAccount = new UserAccount();
+        CreateUser createUser; UserAccount userAccount;
+        [OneTimeSetUp]
+        public void Setup()
+        {
+            createUser = new CreateUser(); userAccount = new UserAccount
+            { Username = "badari", Password = "Mannari1" };
+            userAccount.AddUserInfo();
+        }
+
         [Test]
-        
-        public void ShouldReturnTrueMessageWhenValidUsernameWithOnlyCharectersArePassed()
+        public void ShouldReturnSuccess_WhenValidUsernameWithOnlyCharectersArePassed()
         {
             var userName = "Badari";
 
@@ -20,7 +27,7 @@ namespace NUnitUserAuthentication
         }
 
         [Test]
-        public void ShouldReturnFalseMessageWhenInValidUsernameWithNumberArePassed()
+        public void ShouldReturnFailure_WhenInValidUsernameWithNumberArePassed()
         {
             var userName = "Badari1";
 
@@ -30,7 +37,7 @@ namespace NUnitUserAuthentication
         }
 
         [Test]
-        public void ShouldReturnTrueMessageWhenValidPasswordIsPassed()
+        public void ShouldReturnSuccess_WhenValidPasswordIsPassed()
         {
             var passsord = "Test12";
 
@@ -40,7 +47,7 @@ namespace NUnitUserAuthentication
         }
 
         [Test]
-        public void ShouldReturnFalseMessageWhenInValidPasswordIsPassed()
+        public void ShouldReturnFailure_WhenInValidPasswordIsPassed()
         {
             var passsord = "test";
 
@@ -50,52 +57,53 @@ namespace NUnitUserAuthentication
         }
 
         [Test]
-        public void ShouldReturnEqualMessageWhenValidUsernameIsPassed()
+        public void ShouldReturnSuccess_WhenValidUsernameIsPassed()
         {
             string expectedResult = "User created Successfully";
-            userAccount.Username = "badari"; userAccount.Password = "Mannari1";
-            userAccount.AddUserInfo();
+            string username = "badari"; string password = "Mannari1";
 
-            string actulaResult = createUser.AddNewUser(userAccount.Username, userAccount.Password, userAccount);
+            string actulaResult = createUser.AddNewUser(username, password, userAccount);
 
             Assert.AreEqual(expectedResult, actulaResult);
         }
 
-        //Intially it passed but when password check introduced this test failed, and hence modified
         [Test]
-        public void ShouldReturnNotEqualMessageWhenValidUsernameIsPassed()
+        public void ShouldReturnFailure_WhenValidUsernameAndInvalidPasswordIsPassed()
         {
             string expectedResult = "User created Successfully";
-            userAccount.Username = "testuser"; userAccount.Password = "password";
-            userAccount.AddUserInfo();
+            string username = "testuser"; string password = "password";
 
-            string actulaResult = createUser.AddNewUser(userAccount.Username, userAccount.Password, userAccount);
-            
-            Assert.AreNotEqual(expectedResult, actulaResult);
-        }
-
-        [Test]
-        public void ShouldReturnNotEqualMessageWhenInValidUsernameIsPassed()
-        {
-            string expectedResult = "User created Successfully";
-            userAccount.Username = "testuser1"; userAccount.Password = "password";
-            userAccount.AddUserInfo();
-
-            string actulaResult = createUser.AddNewUser(userAccount.Username, userAccount.Password, userAccount);
+            string actulaResult = createUser.AddNewUser(username, password, userAccount);
 
             Assert.AreNotEqual(expectedResult, actulaResult);
         }
 
         [Test]
-        public void ShouldReturnEqualMessageWhenInValidUsernameIsPassed()
+        public void ShouldReturnFailure_WhenInValidUsernameAndInvalidPasswordIsPassed()
+        {
+            string expectedResult = "User created Successfully";
+            string username = "testuser1"; string password = "password";
+
+            string actulaResult = createUser.AddNewUser(username, password, userAccount);
+
+            Assert.AreNotEqual(expectedResult, actulaResult);
+        }
+
+        [Test]
+        public void ShouldReturnSuccess_WhenInValidUsernameIsPassed()
         {
             string expectedResult = "Unable to create user";
-            userAccount.Username = "testuser2"; userAccount.Password = "password";
-            userAccount.AddUserInfo();
+            string username = "testuser2"; string password = "password";
 
-            string actulaResult = createUser.AddNewUser(userAccount.Username, userAccount.Password, userAccount);
+            string actulaResult = createUser.AddNewUser(username, password, userAccount);
 
             Assert.AreEqual(expectedResult, actulaResult);
+        }
+
+        [OneTimeTearDown]
+        public void TearDown()
+        {
+            createUser = null; userAccount = null;
         }
     }
 }

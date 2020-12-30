@@ -9,19 +9,20 @@ namespace UserAuthenticationConsole
         static void Main(string[] args)
         {
             UserAccount userAccount = new UserAccount();
-            ConsoleInputs adaptor = new ConsoleInputs();
-        Start:
-            adaptor.StartOperation();
+            ConsoleInputs inputs = new ConsoleInputs();
 
-            if (!Validation.IsValidOption(adaptor.OptionType))
+        Start:
+            inputs.StartOperation();
+
+            if (!Validation.IsValidOption(inputs.OptionType))
             {
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Please choose numbers between 0 and 3"); goto Start;
             }
-            Console.WriteLine("You have choosen: " + adaptor.OptionType);
+            Console.WriteLine("You have choosen: " + inputs.OptionType);
 
             string username = ""; string password = ""; string message;
-            if (Convert.ToInt32(adaptor.OptionType) == 1 || Convert.ToInt32(adaptor.OptionType) == 2)
+            if (Convert.ToInt32(inputs.OptionType) == 1 || Convert.ToInt32(inputs.OptionType) == 2)
             {
                 Console.WriteLine("Please enter your Username");
                 username = Console.ReadLine();
@@ -32,7 +33,7 @@ namespace UserAuthenticationConsole
                 password = Console.ReadLine();
             }
 
-            switch (Convert.ToInt32(adaptor.OptionType))
+            switch (Convert.ToInt32(inputs.OptionType))
             {
                 case 0:
                     Console.Clear(); goto Start;
