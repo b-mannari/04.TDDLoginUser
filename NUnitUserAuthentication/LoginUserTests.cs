@@ -7,63 +7,68 @@ namespace NUnitUserAuthentication
     [TestFixture]
     class LoginUserTests
     {
-        LoginUser loginUser; UserAccount userAccount;
+        CreateUser createUser = new CreateUser();
         [OneTimeSetUp]
         public void Setup()
         {
-            loginUser = new LoginUser(); userAccount = new UserAccount
-            { Username = "badari", Password = "Mannari1" };
-            userAccount.AddUserInfo();
+            createUser.dic.Add("BadariMannari", "34514");
         }
 
+        // Test Case 1 for AC 1 Sprint 2
+
         [Test]
-        public void ShouldReturnSuccess_WhenValidUsernameAndValidPasswordArePassed()
+        public void ShouldReturnSucessMessageWhenValidUserCredentialsArePassed()
         {
-            string expectedResult = "Login Success";
-
-            string actulaResult = loginUser.Login(userAccount.Username, userAccount.Password, userAccount);
-
-            Assert.AreEqual(expectedResult, actulaResult);
+            LoginUser loginUser = new LoginUser(createUser);
+            string result = loginUser.Login("BadariMannari", "34514");
+            Assert.AreEqual("User Logged In Successfully", result);
         }
 
+        // Test Case 2 for AC 1 Sprint 2
+
         [Test]
-        public void ShouldReturnSuccess_WhenInValidUsernameAndValidPasswordArePassed()
-        {
-            string expectedResult = "Login failure";
-            string username = "testuser2"; string password = "testpass1";
-
-            string actulaResult = loginUser.Login(username, password, userAccount);
-
-            Assert.AreEqual(expectedResult, actulaResult);
+        public void ShouldReturnFailureMessageWhenWithInValidUserName()
+        {  
+            LoginUser loginUser = new LoginUser(createUser);
+            string result = loginUser.Login("MoABC", "34514");
+            Assert.AreEqual("Login failed.Invalid username", result);
         }
 
+        // Test Case 3 for AC 2 Sprint 2
+
         [Test]
-        public void ShouldReturnFailure_WhenInValidUsernameAndInValidPasswordArePassed()
+        public void ShouldReturnFailureMessageWhenWithInValidPassword()
         {
-            string expectedResult = "Login Success";
-            string username = "testuser2"; string password = "password";
-
-            string actulaResult = loginUser.Login(username, password, userAccount);
-
-            Assert.AreNotEqual(expectedResult, actulaResult);
+            LoginUser loginUser = new LoginUser(createUser);
+            string result = loginUser.Login("BadariMannari", "ABC");
+            Assert.AreEqual("Login failed.Invalid password", result);
         }
 
+        // Test Case 4 for AC 2 Sprint 2
+
         [Test]
-        public void ShouldReturnFailure_WhenValidUsernameAndInValidPasswordArePassed()
+        public void ShouldReturnFailureMessageWhenWithInValidPasswordasEmpty()
         {
+            LoginUser loginUser = new LoginUser(createUser);
+            string result = loginUser.Login("BadariMannari", "");
+            Assert.AreEqual("Login failed.Invalid password", result);
+        }
 
-            string expectedResult = "Login Success";
-            string username = "username"; string password = "testpass1";
+        // Test Case 5 for AC 2 Sprint 2
 
-            string actulaResult = loginUser.Login(username, password, userAccount);
+        [Test]
+        public void ShouldReturnFailureMessageWhenWithInValidPasswordasNULL()
+        {
+            LoginUser loginUser = new LoginUser(createUser);
+            string result = loginUser.Login("BadariMannari", null);
+            Assert.AreEqual("Login failed.Invalid password", result);
 
-            Assert.AreNotEqual(expectedResult, actulaResult);
+
         }
 
         [OneTimeTearDown]
         public void TearDown()
         {
-            loginUser = null; userAccount = null;
         }
     }
 }

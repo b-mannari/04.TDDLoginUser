@@ -8,7 +8,7 @@ namespace UserAuthenticationConsole
     {
         static void Main(string[] args)
         {
-            UserAccount userAccount = new UserAccount();
+            UserDB Userdb = new UserDB();
             ConsoleInputs inputs = new ConsoleInputs();
 
         Start:
@@ -29,18 +29,17 @@ namespace UserAuthenticationConsole
                 Console.WriteLine("Please enter your Password");
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("The password should Minimum length of password is 6, at least 1 alphabet and at least 1 integer");
-                Console.ForegroundColor = ConsoleColor.White; 
+                Console.ForegroundColor = ConsoleColor.White;
                 password = Console.ReadLine();
             }
-
+            CreateUser createUser = new CreateUser();
             switch (Convert.ToInt32(inputs.OptionType))
             {
+
                 case 0:
                     Console.Clear(); goto Start;
                 case 1:
-                    CreateUser createUser = new CreateUser();
-                    userAccount.Username = username; userAccount.Password = password;
-                    message = createUser.AddNewUser(userAccount.Username, userAccount.Password, userAccount);
+                    message = createUser.AddNewUser(username, password);
                     if (message.Contains("Unable"))
                     { Console.ForegroundColor = ConsoleColor.Red; }
                     else
@@ -48,9 +47,8 @@ namespace UserAuthenticationConsole
 
                     Console.WriteLine(message); goto Start;
                 case 2:
-                    LoginUser loginUser = new LoginUser();
-                    userAccount.Username = username; userAccount.Password = password;
-                    message = loginUser.Login(userAccount.Username, userAccount.Password, userAccount);
+                    LoginUser loginUser = new LoginUser(createUser);
+                    message = loginUser.Login(username, password);
                     if (message.Contains("failure"))
                     { Console.ForegroundColor = ConsoleColor.Red; }
                     else

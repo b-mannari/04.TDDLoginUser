@@ -7,103 +7,151 @@ namespace NUnitUserAuthentication
     [TestFixture]
     class CreateUserTests
     {
-        CreateUser createUser; UserAccount userAccount;
+        CreateUser createUser;
         [OneTimeSetUp]
         public void Setup()
         {
-            createUser = new CreateUser(); userAccount = new UserAccount
-            { Username = "badari", Password = "Mannari1" };
-            userAccount.AddUserInfo();
+            createUser = new CreateUser(); 
         }
 
+        // Test Case 1 for AC 1 Sprint 1
+
         [Test]
-        public void ShouldReturnSuccess_WhenValidUsernameWithOnlyCharectersArePassed()
+        public void ShouldReturnSucessMessageWhenValidUserCredentials()
         {
-            var userName = "Badari";
-
-            var result = createUser.ValidateUserName(userName);
-
-            Assert.IsTrue(result);
+            string result = createUser.AddNewUser("Badarix", "TY56345148");
+            Assert.AreEqual("User Created Successfully", result);
         }
 
+        // Test Case 2 for AC 2 Sprint 1
+
         [Test]
-        public void ShouldReturnFailure_WhenInValidUsernameWithNumberArePassed()
+        public void ShouldReturnFailureMessageWhenUserNameisNonAlphabetic()
         {
-            var userName = "Badari1";
-
-            var result = createUser.ValidateUserName(userName);
-
-            Assert.IsFalse(result);
+            string result = createUser.AddNewUser("BAdari123", "passwo14");
+            Assert.AreEqual("User Creation Failed", result);
         }
 
+        // Test Case 3 for AC 3 Sprint 1
+
         [Test]
-        public void ShouldReturnSuccess_WhenValidPasswordIsPassed()
+        public void ShouldReturnFailureMessageWhenUserNameisGreaterThan11()
         {
-            var passsord = "Test12";
-
-            var result = createUser.ValidatePassword(passsord);
-
-            Assert.IsTrue(result);
+            string result = createUser.AddNewUser("BadariMannBM", "password14");
+            Assert.AreEqual("User Creation Failed", result);
         }
 
+        // Test Case 4 for AC 3 Sprint 1
+
         [Test]
-        public void ShouldReturnFailure_WhenInValidPasswordIsPassed()
+        public void ShouldReturnFailureMessageWhenUserNameisEmpty()
         {
-            var passsord = "test";
-
-            var result = createUser.ValidatePassword(passsord);
-
-            Assert.IsFalse(result);
+            string result = createUser.AddNewUser("", "34514");
+            Assert.AreEqual("User Creation Failed", result);
         }
 
+        // Test Case 5 for AC 3 Sprint 1
+
         [Test]
-        public void ShouldReturnSuccess_WhenValidUsernameIsPassed()
+        public void ShouldReturnSuccessMessageWhenUserNameisGreaterThan1andLessThan11()
         {
-            string expectedResult = "User created Successfully";
-            string username = "badari"; string password = "Mannari1";
-
-            string actulaResult = createUser.AddNewUser(username, password, userAccount);
-
-            Assert.AreEqual(expectedResult, actulaResult);
+            string result = createUser.AddNewUser("BadariM", "YU34348514");
+            Assert.AreEqual("User Created Successfully", result);
         }
 
+        // Test Case 6 for AC 4 Sprint 1
+
         [Test]
-        public void ShouldReturnFailure_WhenValidUsernameAndInvalidPasswordIsPassed()
+        public void ShouldReturnSuccessMessageWhenPasswordContainsOnlyNumbers()
         {
-            string expectedResult = "User created Successfully";
-            string username = "testuser"; string password = "password";
-
-            string actulaResult = createUser.AddNewUser(username, password, userAccount);
-
-            Assert.AreNotEqual(expectedResult, actulaResult);
+            string result = createUser.AddNewUser("Badaric", "IY63451489");
+            Assert.AreEqual("User Created Successfully", result);
         }
 
+        // Test Case 7 for AC 4 Sprint 1
+
         [Test]
-        public void ShouldReturnFailure_WhenInValidUsernameAndInvalidPasswordIsPassed()
+        public void ShouldReturnSuccessMessageWhenPasswordContainsOnlyAlphaNumeric()
         {
-            string expectedResult = "User created Successfully";
-            string username = "testuser1"; string password = "password";
-
-            string actulaResult = createUser.AddNewUser(username, password, userAccount);
-
-            Assert.AreNotEqual(expectedResult, actulaResult);
+            string result = createUser.AddNewUser("Badarib", "Pass34514");
+            Assert.AreEqual("User Created Successfully", result);
         }
 
+        // Test Case 8 for AC 4 Sprint 1
+
         [Test]
-        public void ShouldReturnSuccess_WhenInValidUsernameIsPassed()
+        public void ShouldReturnFailureMessageWhenUserNameIsNull()
         {
-            string expectedResult = "Unable to create user";
-            string username = "testuser2"; string password = "password";
+            string result = createUser.AddNewUser(null, "Pass34514");
+            Assert.AreEqual("User Creation Failed", result);
+        }
 
-            string actulaResult = createUser.AddNewUser(username, password, userAccount);
+        // Test Case 9 for AC 1 Sprint 3
 
-            Assert.AreEqual(expectedResult, actulaResult);
+        [Test]
+        public void ShouldReturnFailureMessageWhenPasswordisLessThan8CharLength()
+        {
+            string result = createUser.AddNewUser("BadariMannari", "P34514");
+            Assert.AreEqual("User Creation Failed", result);
+        }
+
+        // Test Case 10 for AC 2 Sprint 3
+
+        [Test]
+        public void ShouldReturnFailureMessageWhenPasswordDoesnotContainAlphabets()
+        {
+            string result = createUser.AddNewUser("BadariMannari", "34514789");
+            Assert.AreEqual("User Creation Failed", result);
+        }
+
+        // Test Case 11 for AC 2 Sprint 3
+
+        [Test]
+        public void ShouldReturnFailureMessageWhenPasswordDoesnotContain2Alphabets()
+        {
+            string result = createUser.AddNewUser("Badari", "T34514789");
+            Assert.AreEqual("User Creation Failed", result);
+        }
+
+        // Test Case 12 for AC 2 Sprint 3
+
+        [Test]
+        public void ShouldReturnSuccessMessageWhenPasswordContainsMinimum2Alphabets()
+        {
+            string result = createUser.AddNewUser("Badari", "AB345678");
+            Assert.AreEqual("User Created Successfully", result);
+        }
+
+        // Test Case 13 for AC 3 Sprint 3
+
+        [Test]
+        public void ShouldReturnFailureMessageWhenPasswordDoesnotContainMinimum2Integers()
+        {
+            string result = createUser.AddNewUser("BadariMannari", "ABVtnITIU5");
+            Assert.AreEqual("User Creation Failed", result);
+        }
+
+        // Test Case 14 for AC 3 Sprint 3
+
+        [Test]
+        public void ShouldReturnSuccessMessageWhenPasswordContainsMinimum2Integers()
+        {
+            string result = createUser.AddNewUser("Badaria", "ABVtnITIU12");
+            Assert.AreEqual("User Created Successfully", result);
+        }
+
+        // Test Case 15 for AC 3 Sprint 3
+        [Test]
+        public void ShouldReturnFailureMessageWhenPasswordDoesnotContainAnyIntegers()
+        {
+            string result = createUser.AddNewUser("BadariMannari", "ABVtnITIU");
+            Assert.AreEqual("User Creation Failed", result);
         }
 
         [OneTimeTearDown]
         public void TearDown()
         {
-            createUser = null; userAccount = null;
+            createUser = null;  
         }
     }
 }
